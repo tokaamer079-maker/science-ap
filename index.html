@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الكشف عن الأحماض والقلويات بعباد الشمس</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#eef6f3;--card:#fff;--ink:#14323a;--mut:#4a6a70;--acc:#0f766e;--red:#d9392b;--blue:#2a5bd7;--grn:#2f9e58;--line:#cfe2dd}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1f22;--card:#172b2f;--ink:#e6f2f0;--mut:#9fbdb9;--acc:#4fd1c0;--line:#2a444a}}
+:root[data-theme="dark"]{--bg:#0f1f22;--card:#172b2f;--ink:#e6f2f0;--mut:#9fbdb9;--acc:#4fd1c0;--line:#2a444a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,Arial,sans-serif;line-height:1.7}
+main{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.45rem;font-weight:900;margin:8px 0 2px}
+.sub{color:var(--mut);margin:0 0 12px;font-size:.95rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.stage{position:relative;padding:6px 6px 0}
+svg{width:100%;height:auto;display:block;max-height:340px}
+#paperLow,#paperUp{transition:fill 1.2s}
+#paper{transition:transform 2.2s ease-in-out}
+#paper.up{transform:translateY(-120px)}
+#paper.down{transform:translateY(0)}
+#paper.hide{opacity:0}
+#badge{position:absolute;inset-inline:0;bottom:10px;text-align:center;font-weight:900;font-size:1.25rem;opacity:0;transition:opacity .6s}
+#badge.on{opacity:1}
+#badge span{display:inline-block;padding:4px 18px;border-radius:99px;color:#fff}
+.title{font-weight:900;font-size:1.2rem;margin:12px 0 4px}
+#txt{margin:0;font-size:1.05rem}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+button{font:inherit;font-weight:700;border:1px solid var(--acc);background:var(--card);color:var(--acc);border-radius:10px;padding:8px 14px;cursor:pointer}
+button.main{background:var(--acc);color:#fff}
+button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.dots{display:flex;gap:6px;margin-inline-start:auto}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--line);padding:0;border:0}
+.dot.on{background:var(--acc)}
+#sum{display:none;overflow-x:auto}
+table{width:100%;border-collapse:collapse;text-align:center}
+th,td{border:1px solid var(--line);padding:8px}
+th{background:var(--bg)}
+.note{font-size:.85rem;color:var(--mut);margin-top:10px}
+@media (prefers-reduced-motion:reduce){#paper{transition-duration:.01s}}
+</style>
+</head>
+<body>
+<main>
+<h1>الكشف عن الأحماض والقلويات بورقة عباد الشمس</h1>
+<p class="sub">العلوم – الصف السادس الابتدائي</p>
+
+<div class="card">
+  <div class="stage" id="stage">
+    <svg viewBox="0 -20 400 300" role="img" aria-label="أنبوبة اختبار وورقة عباد الشمس">
+      <defs><clipPath id="cp"><path d="M150 70V210a50 50 0 0 0 100 0V70z"/></clipPath></defs>
+      <rect x="40" y="262" width="320" height="10" rx="5" fill="#b9cfcb"/>
+      <rect id="liq" x="150" y="150" width="100" height="140" fill="#dff3fb" clip-path="url(#cp)" style="transition:fill .6s"/>
+      <g id="paper" class="up">
+        <rect id="paperUp" x="193" y="40" width="22" height="110" fill="#2a5bd7"/>
+        <rect id="paperLow" x="193" y="150" width="22" height="55" fill="#2a5bd7"/>
+      </g>
+      <path d="M150 70V210a50 50 0 0 0 100 0V70" fill="none" stroke="#6c8c92" stroke-width="5" stroke-linecap="round"/>
+      <rect x="143" y="64" width="114" height="8" rx="4" fill="#6c8c92"/>
+      <text id="lab" x="200" y="248" text-anchor="middle" font-family="Cairo,Tahoma,sans-serif" font-weight="700" font-size="17" fill="#14323a"></text>
+    </svg>
+    <div id="badge"><span id="badgeTxt"></span></div>
+  </div>
+  <div id="sum">
+    <table>
+      <tr><th>المحلول</th><th>تغيّر اللون</th><th>النوع</th></tr>
+      <tr><td>حمض الهيدروكلوريك المخفف</td><td>أزرق ← أحمر</td><td style="color:var(--red);font-weight:700">حمض</td></tr>
+      <tr><td>محلول الأمونيا</td><td>أحمر ← أزرق</td><td style="color:var(--blue);font-weight:700">قلوي</td></tr>
+      <tr><td>الماء المقطر</td><td>لا يتغير</td><td style="color:var(--grn);font-weight:700">متعادل</td></tr>
+    </table>
+  </div>
+  <div class="title" id="ttl"></div>
+  <p id="txt"></p>
+  <div class="ctrl">
+    <button class="main" id="play">▶ تشغيل الدرس بالصوت</button>
+    <button id="prev">السابق</button>
+    <button id="next">التالي</button>
+    <button id="snd" aria-pressed="true">🔊 الصوت: يعمل</button>
+    <div class="dots" id="dots"></div>
+  </div>
+  <p class="note">الشرح الصوتي يستخدم صوت الجهاز العربي؛ إن لم يظهر صوت عربي، أضيفيه من إعدادات الجهاز (تحويل النص إلى كلام). التجربة الحقيقية تتم بإشراف المعلمة مع ارتداء النظارة والقفازات.</p>
+</div>
+</main>
+<script>
+var S=[
+{t:"مقدمة",x:"مرحبًا يا أبطال العلوم! اليوم سنتعرف على تجربة الكشف عن الأحماض والقلويات باستخدام ورقة عباد الشمس. الأدوات: ورقة عباد الشمس الزرقاء، وورقة عباد الشمس الحمراء، وحمض الهيدروكلوريك المخفف، ومحلول الأمونيا، وماء مقطر. ونتذكر دائمًا أن نعمل بإشراف المعلمة، ونرتدي النظارة والقفازات.",hide:1,liq:"#dff3fb",lab:""},
+{t:"التجربة الأولى: حمض الهيدروكلوريك المخفف",x:"نضع حمض الهيدروكلوريك المخفف في أنبوبة اختبار. ثم نغمس فيها ورقة عباد الشمس الزرقاء. نلاحظ أن لون الورقة تغيّر من الأزرق إلى الأحمر. إذن هذا المحلول من الأحماض.",liq:"#f6edb0",lab:"HCl حمض الهيدروكلوريك",from:"#2a5bd7",to:"#d9392b",res:"حمض ← أحمر",rc:"#d9392b"},
+{t:"التجربة الثانية: محلول الأمونيا",x:"نضع الآن محلول الأمونيا في أنبوبة أخرى. ونغمس فيها ورقة عباد الشمس الحمراء. نلاحظ أن لون الورقة تغيّر من الأحمر إلى الأزرق. إذن هذا المحلول من القلويات.",liq:"#cfe6f7",lab:"NH₃ محلول الأمونيا",from:"#d9392b",to:"#2a5bd7",res:"قلوي ← أزرق",rc:"#2a5bd7"},
+{t:"التجربة الثالثة: الماء المقطر",x:"في الأنبوبة الثالثة نضع الماء المقطر، ونغمس فيه ورقة عباد الشمس. نلاحظ أن لون الورقة لم يتغيّر. إذن الماء المقطر من المحاليل المتعادلة، فهو لا حمض ولا قلوي.",liq:"#e4f6fb",lab:"ماء مقطر",from:"#2a5bd7",to:"#2a5bd7",res:"متعادل ← لا تغيّر",rc:"#2f9e58"},
+{t:"الخلاصة",x:"لنراجع معًا. ورقة عباد الشمس الزرقاء تتحول إلى اللون الأحمر في الأحماض. وورقة عباد الشمس الحمراء تتحول إلى اللون الأزرق في القلويات. ولا يتغير لون الورقة في المحاليل المتعادلة مثل الماء المقطر. أحسنتم يا أبطال العلوم!",sum:1,hide:1}
+];
+var $=function(i){return document.getElementById(i)};
+var i=0,auto=false,sound=true,tok=0,timers=[];
+var syn=window.speechSynthesis;
+function clr(){timers.forEach(clearTimeout);timers=[];if(syn)syn.cancel()}
+function T(f,ms){timers.push(setTimeout(f,ms))}
+function voice(){var v=(syn&&syn.getVoices())||[];for(var k=0;k<v.length;k++)if(v[k].lang&&v[k].lang.toLowerCase().indexOf("ar")==0)return v[k];return null}
+function run(n){
+  clr();i=n;var s=S[i],my=++tok;
+  $("ttl").textContent=s.t;$("txt").textContent=s.x;
+  $("liq").setAttribute("fill",s.liq||"#dff3fb");$("lab").textContent=s.lab||"";
+  $("badge").className="";
+  var p=$("paper");p.className=s.hide?"up hide":"up";
+  if(s.from){$("paperUp").setAttribute("fill",s.from);$("paperLow").setAttribute("fill",s.from)}
+  $("stage").querySelector("svg").style.display=s.sum?"none":"block";
+  $("sum").style.display=s.sum?"block":"none";
+  $("badge").style.display=s.sum?"none":"block";
+  var d=document.querySelectorAll(".dot");for(var k=0;k<d.length;k++)d[k].className="dot"+(k==i?" on":"");
+  var done=0,need=2;
+  function fin(){done++;if(done>=need&&auto&&my==tok){if(i<S.length-1)T(function(){run(i+1)},900);else{auto=false;$("play").textContent="▶ إعادة الدرس"}}}
+  if(s.from){
+    T(function(){p.className="down"},1500);
+    T(function(){$("paperLow").setAttribute("fill",s.to)},4300);
+    T(function(){$("badgeTxt").textContent=s.res;$("badgeTxt").style.background=s.rc;$("badge").className="on"},5600);
+  }
+  var minT=s.from?7000:2500;
+  T(fin,minT);
+  var spoke=false;
+  if(sound&&syn&&auto){
+    var u=new SpeechSynthesisUtterance(s.x);u.lang="ar-SA";u.rate=.9;var v=voice();if(v)u.voice=v;
+    u.onend=function(){if(my==tok)fin()};u.onerror=function(){if(my==tok)fin()};
+    syn.speak(u);spoke=true;
+  }
+  if(!spoke)T(fin,Math.max(minT,s.x.length*75));else T(function(){},0);
+  if(spoke)need=2; else need=2;
+}
+for(var k=0;k<S.length;k++){(function(k){var b=document.createElement("button");b.className="dot";b.setAttribute("aria-label","المشهد "+(k+1));b.onclick=function(){auto=false;$("play").textContent="▶ تشغيل الدرس بالصوت";run(k)};$("dots").appendChild(b)})(k)}
+$("play").onclick=function(){
+  if(auto){auto=false;clr();$("play").textContent="▶ تشغيل الدرس بالصوت";return}
+  auto=true;$("play").textContent="⏸ إيقاف";run(i>=S.length-1?0:i);
+};
+$("next").onclick=function(){auto=false;$("play").textContent="▶ تشغيل الدرس بالصوت";run(Math.min(i+1,S.length-1))};
+$("prev").onclick=function(){auto=false;$("play").textContent="▶ تشغيل الدرس بالصوت";run(Math.max(i-1,0))};
+$("snd").onclick=function(){sound=!sound;this.setAttribute("aria-pressed",sound);this.textContent=sound?"🔊 الصوت: يعمل":"🔇 الصوت: متوقف";if(!sound&&syn)syn.cancel()};
+if(syn)syn.getVoices();
+run(0);
+</script>
+</body>
+</html>
